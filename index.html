@@ -9,43 +9,97 @@
             Multiple Interest Calculator
         </title>
         <script src="script.js" defer></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" defer></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" defer></script>
     </head> 
     <body>
         <div class="container">
             <h1 class = "display-4 text-center">Mortgage Interest Comparison</h1>
             <div class="row">  
                     
-                    <form>  
+                    <form id="form" onsubmit="return false">  
                         <div class="form-group row">
-                            <div class="col-md-8">
+                            <div class="required col-md-8">
                                 <label class = "col-md-3 col-form-label text-right">Property value:    $</label>
-                                <input type="number" class = "form-horizontal form-control-md" placeholder = "0">
+                                <input id="propValue" type="number" class = "form-horizontal form-control-md" placeholder = "0" required>
                             </div>
-                            <div class="col-md-8">
-                                <label class = "col-md-3 col-form-label text-right">Down Payment:  $</label>
-                                <input type="number" class = "form-horizontal form-control-md" placeholder = "0">
+                            <div class="required col-md-12">
+                                <label class = "col-md-2 col-form-label text-right">Down Payment:  $</label>
+                                <input id="downPaymentNum" type="number" class = "form-horizontal form-control-md" placeholder = "0" required>
                                 <label class = "col-form-label">%</label>
-                                <input type="number" class = "form-horizontal form-control-md" placeholder = "0" min="1" max="100">
+                                <input id="downPaymentRat" type="number" class = "form-horizontal form-control-md" placeholder = "0" min="1" max="99" required>
+                                <label class = "col-md-3 col-form-label text-right">Max Down Payment:    $</label>
+                                <input type="number" class = "form-horizontal form-control-md" placeholder = "0">
                             </div>
-                            <div class="col-md-8">
-                                <label class = "col-md-3 col-form-label text-right">Principal: $</label>
+                            <div class="col-md-12">
+                                <label class = "col-md-2 col-form-label text-right">Principal: $</label>
+                                <input id="calc" type="number" class = "form-horizontal form-control-md" placeholder = "0">
+                                <label class = "col-md-4 col-form-label text-right">Principal Approved:    $</label>
                                 <input type="number" class = "form-horizontal form-control-md" placeholder = "0">
                             </div>
                             <div class="col-md-8">
                                 <label class = "col-md-3 col-form-label text-right">Interest:  %</label>
-                                <input type="number" class = "form-horizontal form-control-md" placeholder = "0" min="1" max="100">
+                                <input id="interest" type="number" class = "form-horizontal form-control-md" placeholder = "0" min="0.05" max="100" step=0.05 required>
                             </div>
                             <div class="col-md-8">
                                 <label class = "col-md-3 col-form-label text-right">Years:</label>
-                                <input type="number" class = "form-horizontal form-control-md" placeholder = "0" min="0" step="1">
+                                <input id = "years" type="number" class = "form-horizontal form-control-md" placeholder = "0" min="0" max="30" required>
+                            </div>
+                            <div class="col-md-8">
+                                <label class = "col-md-3 col-form-label text-right">Start Date:</label>
+                                <input id = "startDate" type="date" class = "form-horizontal form-control-md" required>
                             </div>
                             <div class="col-md-6">
-                                <input type="submit">
+                                <input id = "submit1" type="submit">
                             </div>
                         </div>
                     </form>
+                    <p id="EMI"></p>                    
             </div>
         </div>
+        <div id="calcMenu" style="display:none">
+            <div class="btn-group d-flex justify-content-around p-2">  
+                <div class="btn-group flex-fill mx-1">  
+                    <button type="button" id="EMITable" class="btn btn-primary  btn-block" data-toggle="collapse" data-target="#EMICalc">EMI Table</button>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                </div>
+                <button type="button" id="COC" class="btn btn-primary flex-fill mx-1">COC</button>
+                <button type="button" id="ROI" class="btn btn-primary flex-fill mx-1">ROI</button>
+            </div>
+        </div>
+        <p id="EMICal" class="collapse">HEYYYYY</p>
+        <div class = "container collapse" id="EMICalc">
+        <ul class="nav nav-tabs justify-content-center">
+            <li><button type="button" class="btn btn-secondary active" data-toggle="tab" data-target="#Overall">Overall</button></li>
+            <li><button type="button" class="btn btn-secondary" data-toggle="tab" data-target="#Annual">Annual</button></li>
+            <li><button type="button" class="btn btn-secondary" data-toggle="tab" data-target="#YearsCal">Years</button></li>
+            <li><button type="button" class="btn btn-secondary" data-toggle="tab" data-target="#menu3">Menu 3</button></li>
+          </ul>
+
+        <div class="tab-content">
+            <div id="Overall" class="tab-pane active text-center">
+                <p id="overallContent"></p>
+                <p id="totalPropValue">Property Value: $</p>
+                <p id="totalPrinValue">Principal Amount: $</p>
+                <p id="totalInterestRate">Interest Rate: </p>
+                <p id="totalTerm">Term: </p>
+                <p id="totalStartDate">Start Date: </p>
+                <p id="totalEndDate">End Date: </p>
+            
+                <p id="totalInterestPayments">Interest Payments: $</p>
+                <p id="totalPayments">Total Payment: $</p>
+            </div>
+            <div id="Annual" class="tab-pane">
+                <h3>ANNUAL</h3>
+            </div>
+            <div id="YearsCal" class="tab-pane">
+                <h3>YEARS</h3>
+            </div>
+    </div>
+</div>
 
     </body>
 </html>
