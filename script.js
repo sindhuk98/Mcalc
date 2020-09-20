@@ -72,8 +72,10 @@ function callback(e) {
 
 }
 
-function funcOverall() {
-    document.getElementById('totalPropValue').textContent += input.value
+function resetForm() {
+    document.getElementById('calcMenu').style.display="none"
+    document.getElementById('EMI').textContent = ""
+    document.getElementById('form').reset()
 }
 
 /*
