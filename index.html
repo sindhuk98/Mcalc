@@ -75,8 +75,8 @@
         <div class = "container collapse" id="EMICalc">
         <ul class="nav nav-tabs justify-content-center">
             <li><button type="button" class="btn btn-secondary active" data-toggle="tab" data-target="#Overall">Overall</button></li>
-            <li><button type="button" class="btn btn-secondary" data-toggle="tab" data-target="#Annual">Annual</button></li>
-            <li><button type="button" class="btn btn-secondary" data-toggle="tab" data-target="#YearsCal">Years</button></li>
+            <li><button type="button" class="btn btn-secondary" data-toggle="tab" data-target="#Annual" onclick="AnnualTableCalc()">Annual</button></li>
+            <li><button type="button" class="btn btn-secondary" data-toggle="tab" data-target="#YearsCal" onclick="MonthlyTableCalc()">Monthly</button></li>
             <li><button type="button" class="btn btn-secondary" data-toggle="tab" data-target="#menu3">Menu 3</button></li>
           </ul>
 
@@ -93,14 +93,35 @@
                 <p id="totalInterestPayments">Interest Payments: $</p>
                 <p id="totalPayments">Total Payment: $</p>
             </div>
-            <div id="Annual" class="tab-pane">
-                <h3>ANNUAL</h3>
+            <div id="Annual" class="tab-pane fade">
+                    <table id="AnnualTable" class="table m-auto">
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Interest</th>
+                                <th>Principal</th>
+                                <th>Remaining Loan</th>
+                            </tr>
+                        </thead>
+                        <tbody id = "AnnualTableBody"></tbody>
+                    </table>
+
             </div>
             <div id="YearsCal" class="tab-pane">
-                <h3>YEARS</h3>
+                <table id="MonthlyTable" class="table m-auto">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Interest</th>
+                            <th>Principal</th>
+                            <th>Remaining Loan</th>
+                        </tr>
+                    </thead>
+                    <tbody id = "MonthlyTableBody"></tbody>
+                </table>
             </div>
     </div>
 </div>
 
     </body>
-</html>
+</html> 
